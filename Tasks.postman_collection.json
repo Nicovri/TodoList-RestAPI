@@ -1,0 +1,256 @@
+{
+  "info": {
+    "_postman_id": "c4e50728-8007-4d55-ace4-e6df0f31e2a7",
+    "name": "Tasks",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27030640"
+  },
+  "item": [
+    {
+      "name": "AddTask",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"save the world\",\r\n    \"isFinished\": false,\r\n    \"priority\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/task",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetTask",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task/5bf8c41e-4a9a-4e9e-948b-07b5fdec95da",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "5bf8c41e-4a9a-4e9e-948b-07b5fdec95da"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddTaskFail",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"isFinished\": false,\r\n    \"priority\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/task",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetTaskFail",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task/1234",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "1234"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteTask",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task/f96a4124-eccd-4808-a3dc-4a822fee7232",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "f96a4124-eccd-4808-a3dc-4a822fee7232"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateTask",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"isFinished\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/task/5bf8c41e-4a9a-4e9e-948b-07b5fdec95da",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "5bf8c41e-4a9a-4e9e-948b-07b5fdec95da"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllTasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetTasksAtPage",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task/page/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "page", "2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddTag",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"superhero-stuff\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/tag",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "tag"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddTagToTask",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/task/5bf8c41e-4a9a-4e9e-948b-07b5fdec95da/tag/d3a016d2-5b8f-43bd-9c3e-29808dda9437",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "task", "5bf8c41e-4a9a-4e9e-948b-07b5fdec95da", "tag", "d3a016d2-5b8f-43bd-9c3e-29808dda9437"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RemoveTagOfTask",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/task/5bf8c41e-4a9a-4e9e-948b-07b5fdec95da/-tag/7ddb871c-0976-4398-9dfb-fe26eef496f2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": [
+            "api",
+            "task",
+            "5bf8c41e-4a9a-4e9e-948b-07b5fdec95da",
+            "-tag",
+            "7ddb871c-0976-4398-9dfb-fe26eef496f2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FilterByTag",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/tag/d3a016d2-5b8f-43bd-9c3e-29808dda9437",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "tag", "d3a016d2-5b8f-43bd-9c3e-29808dda9437"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FilterByTagFail",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/tag/1234",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "tag", "1234"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

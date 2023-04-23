@@ -1,0 +1,285 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: localhost
+    url: http://localhost:3002/api
+info:
+  description: Tasks - Tag Rest API
+  version: '1.0.0'
+  title: TP Final
+  contact:
+    email: nocompany@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: tasks
+    description: API pour les tâches
+paths:
+  /task/page/{n}:
+    get:
+      parameters:
+        - in: path
+          name: n
+          schema:
+            type: string
+          required: true
+          description: Number of the page of 10 tasks to get
+      tags:
+        - GetTasks
+      summary: récupère 10 tâches sur la page n
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /task:
+    post:
+      tags:
+        - AddTask
+      summary: créée une nouvelle tâche
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Task'
+        '400':
+          description: OBJECT NOT CONSISTENT WITH SCHEMA
+  /task/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the requested task
+      tags:
+        - GetTask
+      summary: récupère une tâche spécifique
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: NOT FOUND
+        '500':
+          description: INTERNAL SERVER ERROR
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the requested task
+      tags:
+        - DeleteTask
+      summary: supprime une tâche spécifique
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Task'
+        '404':
+          description: NOT FOUND
+        '500':
+          description: INTERNAL SERVER ERROR
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the requested task
+      tags:
+        - UpdateTask
+      summary: modifie une tâche spécifique
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Task'
+        '404':
+          description: NOT FOUND
+        '500':
+          description: INTERNAL SERVER ERROR
+  /task/{id}/tag/{tag_id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the task to be updated with a tag
+        - in: path
+          name: tag_id
+          schema:
+            type: string
+          required: true
+          description: ID of the tag to be added to the task
+      tags:
+        - AddTagToTask
+      summary: ajoute un tag spécifique à une tâche
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Task'
+        '404':
+          description: NOT FOUND
+  /task/{id}/-tag/{tag_id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the task to be updated with a tag
+        - in: path
+          name: tag_id
+          schema:
+            type: string
+          required: true
+          description: ID of the tag to be removed of the task
+      tags:
+        - AddTagOfTask
+      summary: supprime un tag spécifique à une tâche
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Task'
+        '404':
+          description: NOT FOUND
+  /tag:
+    get:
+      tags:
+        - GetTags
+      summary: récupère la liste de tous les tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '404':
+          description: NOT FOUND
+        '500':
+          description: INTERNAL SERVER ERROR
+    post:
+      tags:
+        - AddTag
+      summary: créée un nouveau tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '400':
+          description: OBJECT NOT CONSISTENT WITH SCHEMA
+  /tag/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the requested tag
+      tags:
+        - FilterByTag
+      summary: récupère la liste des tâches associées à un tag / récupère un tag spécifique
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  schemas:
+    Task:
+      type: object
+      required:
+        - id
+        - title
+        - isFinished
+        - priority
+        - tags
+      properties:
+        id:
+          type: string
+          format: id
+          example: 42
+        title:
+          type: string
+          example: Read one chapter
+        description:
+          type: string
+        isFinished:
+          type: boolean
+          example: true
+        priority:
+          type: number
+          example: 1
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      required:
+        - id
+        - title
+        - tasks
+      properties:
+        id:
+          type: string
+          format: id
+          example: 42
+        title:
+          type: string
+          example: Food
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
